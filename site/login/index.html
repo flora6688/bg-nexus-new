@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登录 · BG Nexus</title>
+  <meta name="description" content="登录或注册 BG Nexus 账户，管理金融服务接入与日常运营。">
+  <link rel="icon" type="image/png" href="/bg-nexus-logo.png">
+  <link rel="stylesheet" href="/site-nav.css?v=nexus-logo">
+  <link rel="stylesheet" href="/login.css?v=auth-header-unified">
+  <script src="/site-routes.js?v=auth-design" defer></script>
+  <script src="/site-nav.js?v=nexus-logo" defer></script>
+  <script src="/login.js?v=auth-design" defer></script>
+</head>
+<body class="bgx-login-host" data-auth-page="login">
+  <header data-bgx-navigation></header>
+  <main class="auth-layout">
+    <section class="auth-brand" aria-labelledby="auth-brand-title">
+      <div class="auth-brand-copy">
+        <h2 id="auth-brand-title">连接全球业务，<br><span>从这里开始。</span></h2>
+        <p class="auth-brand-description">外汇服务与跨境支付运营，在同一平台高效协同。</p>
+      </div>
+      <figure class="auth-art">
+        <img src="/bg-nexus-hub.png" width="1536" height="1024" alt="BG Nexus 连接接口、权限管理与结算运营" fetchpriority="high">
+      </figure>
+    </section>
+    <section class="auth-entry" aria-label="账户入口">
+      <div class="auth-panel" data-auth-view="login">
+        <div class="auth-heading">
+          <h1>欢迎回来</h1>
+          <p>登录你的 BG Nexus 账户</p>
+        </div>
+        <form class="auth-form" id="login-form" novalidate>
+          <div class="auth-field">
+            <label for="login-email">工作邮箱</label>
+            <input id="login-email" type="email" autocomplete="username" placeholder="name@company.com" required maxlength="254" aria-describedby="login-email-error">
+            <p class="auth-field-error" id="login-email-error" hidden></p>
+          </div>
+          <div class="auth-field">
+            <label for="login-password">密码</label>
+            <div class="auth-password">
+              <input id="login-password" type="password" autocomplete="current-password" placeholder="请输入密码" required aria-describedby="login-password-error">
+              <button class="auth-reveal" type="button" aria-label="显示密码" aria-controls="login-password" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+            </div>
+            <p class="auth-field-error" id="login-password-error" hidden></p>
+          </div>
+          <button class="auth-submit" type="submit" disabled>登录</button>
+          <p class="auth-service-note">预览环境 · 登录与注册服务待接入</p>
+          <p class="auth-feedback" id="login-feedback" role="status" tabindex="-1" hidden></p>
+        </form>
+        <div class="auth-switch"><span>还没有账户？</span><a href="/register/">注册账户</a></div>
+      </div>
+      <div class="auth-panel" data-auth-view="register">
+        <div class="auth-heading">
+          <h1>创建你的账户</h1>
+          <p>开始使用 BG Nexus 管理服务接入与运营</p>
+        </div>
+        <form class="auth-form" id="register-form" novalidate>
+          <div class="auth-field">
+            <label for="register-email">工作邮箱</label>
+            <input id="register-email" type="email" autocomplete="username" placeholder="name@company.com" required maxlength="254" aria-describedby="register-email-error">
+            <p class="auth-field-error" id="register-email-error" hidden></p>
+          </div>
+          <div class="auth-field">
+            <label for="register-password">设置密码</label>
+            <div class="auth-password">
+              <input id="register-password" type="password" autocomplete="new-password" placeholder="至少 8 位，包含字母和数字" required minlength="8" aria-describedby="register-password-error">
+              <button class="auth-reveal" type="button" aria-label="显示设置密码" aria-controls="register-password" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+            </div>
+            <p class="auth-field-error" id="register-password-error" hidden></p>
+          </div>
+          <div class="auth-field">
+            <label for="register-confirm">确认密码</label>
+            <input id="register-confirm" type="password" autocomplete="new-password" placeholder="请再次输入密码" required aria-describedby="register-confirm-error">
+            <p class="auth-field-error" id="register-confirm-error" hidden></p>
+          </div>
+          <button class="auth-submit" type="submit" disabled>注册账户</button>
+          <p class="auth-service-note">预览环境 · 登录与注册服务待接入</p>
+          <p class="auth-feedback" id="register-feedback" role="status" tabindex="-1" hidden></p>
+        </form>
+        <div class="auth-switch"><span>已有账户？</span><a href="/login/">去登录</a></div>
+      </div>
+      <noscript><p>请启用 JavaScript 以使用账户表单。</p></noscript>
+    </section>
+  </main>
+  <footer class="auth-footer">© 2026 BGG Markets Limited</footer>
+</body>
+</html>

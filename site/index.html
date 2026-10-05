@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="面向企业客户的金融服务接入与运营管理平台，支持外汇与跨境支付运营。">
+  <title>BG Nexus｜开放金融服务接入平台</title>
+  <style>
+    :root {
+      --ink: #111a2c;
+      --muted: #647083;
+      --line: #dce2ec;
+      --paper: #f8fafd;
+      --white: #fff;
+      --blue: #3157e8;
+      --blue-dark: #1c38a4;
+      --mint: #a7f3d0;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, p { margin-top: 0; }
+    .wrap { width: min(1190px, calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow { margin-bottom: 18px; color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .15em; }
+    h2 { margin-bottom: 0; font-size: clamp(34px, 3.5vw, 49px); line-height: 1.18; letter-spacing: -.05em; }
+
+    .hero {
+      min-height: 830px;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(42,63,112,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42,63,112,.045) 1px, transparent 1px),
+        radial-gradient(circle at 78% 39%, rgba(98,120,255,.2), transparent 31%),
+        linear-gradient(132deg, #fbfcff, #f5f7ff 58%, #edf2ff);
+      background-size: 38px 38px, 38px 38px, auto, auto;
+    }
+    nav { height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(17,26,44,.12); }
+    .brand { display: inline-flex; align-items: center; gap: 7px; font-size: 19px; font-weight: 800; letter-spacing: .1em; }
+    .brand-mark { display: grid; place-items: center; width: 37px; height: 37px; border-radius: 10px; color: var(--mint); background: var(--ink); font-size: 13px; letter-spacing: 0; }
+    .brand small { margin-left: 10px; padding-left: 16px; border-left: 1px solid #c7cfdb; color: #7a8798; font-size: 9px; letter-spacing: .13em; }
+    .nav-links { display: flex; gap: 28px; margin-left: auto; margin-right: 30px; font-size: 13px; font-weight: 700; }
+    .nav-links a:hover, .text-link:hover { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 18px; font-size: 13px; font-weight: 700; }
+    .nav-button { padding: 14px 17px; border-radius: 9px; color: white; background: var(--ink); }
+    .nav-button:hover { background: var(--blue-dark); }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 76px; align-items: center; padding-top: 100px; }
+    h1 { margin-bottom: 27px; font-size: clamp(47px, 5.15vw, 70px); line-height: 1.12; letter-spacing: -.066em; }
+    .hero-copy > p:not(.eyebrow):not(.legal) { max-width: 650px; margin-bottom: 31px; color: var(--muted); font-size: 16px; line-height: 1.86; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .button { display: inline-flex; min-height: 50px; padding: 0 21px; align-items: center; justify-content: center; border-radius: 9px; font-size: 14px; font-weight: 750; }
+    .primary { gap: 16px; color: white; background: var(--blue); box-shadow: 0 12px 24px rgba(49,87,232,.17); }
+    .secondary { border: 1px solid #c1cad8; background: rgba(255,255,255,.75); }
+    .legal { max-width: 610px; margin: 21px 0 0; color: #8791a2; font-size: 11px; line-height: 1.65; }
+    .console { position: relative; overflow: hidden; padding: 20px; border-radius: 18px; color: #edf2ff; background: var(--ink); box-shadow: 0 30px 70px rgba(24,39,86,.22); }
+    .console::after { position: absolute; top: -90px; right: -74px; width: 230px; height: 230px; border: 42px solid rgba(95,122,255,.16); border-radius: 50%; content: ""; }
+    .console-head { position: relative; z-index: 1; display: flex; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.12); font: 700 10px/1 monospace; letter-spacing: .08em; }
+    .preview { display: inline-flex; align-items: center; gap: 7px; color: #8be4b3; }
+    .preview::before { width: 7px; height: 7px; border-radius: 50%; background: #62e8a3; box-shadow: 0 0 0 5px rgba(98,232,163,.1); content: ""; }
+    .console-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 14px; }
+    .console-metrics div { padding: 15px; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; background: rgba(255,255,255,.04); }
+    .console small { display: block; margin-bottom: 8px; color: #8794ad; font: 9px/1 monospace; letter-spacing: .08em; }
+    .console-metrics strong { font: 600 14px/1 monospace; }
+    .console-row { position: relative; z-index: 1; display: grid; grid-template-columns: 45px 1fr 30px; gap: 10px; padding: 15px 12px; border-top: 1px solid rgba(255,255,255,.09); font: 11px/1 monospace; }
+    .console-row span { color: #8be4b3; font-weight: 700; }
+    .console-row code { color: #c9d3e7; }
+    .console-row b { color: #9eb1ff; text-align: right; }
+    .console-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 13px; }
+    .console-tags span { padding: 7px 9px; border: 1px solid rgba(158,177,255,.2); border-radius: 999px; color: #aebeff; font: 9px/1 monospace; }
+    .hero-rail { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 90px; border-top: 1px solid rgba(17,26,44,.14); }
+    .hero-rail span { padding: 19px 0; color: #798598; font: 600 10px/1 monospace; }
+
+    section.content { padding: 120px 0 128px; }
+    .split { display: grid; grid-template-columns: 1.05fr .95fr; gap: 90px; align-items: end; }
+    .split > p { max-width: 520px; margin: 0 0 3px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+    .capabilities { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-top: 54px; }
+    .capability { min-height: 360px; display: flex; flex-direction: column; padding: 25px; border: 1px solid var(--line); background: white; }
+    .cap-head { display: flex; align-items: center; justify-content: space-between; }
+    .cap-code { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 10px; color: white; background: var(--blue); font: 700 11px/1 monospace; }
+    .cap-head i { color: #97a2b2; font: normal 600 8px/1 monospace; }
+    .capability h3 { margin: 68px 0 13px; font-size: 24px; }
+    .capability p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: auto; padding-top: 26px; border-top: 1px solid var(--line); }
+    .tags span { padding: 7px 9px; border-radius: 4px; color: #536176; background: #f3f6fa; font-size: 10px; font-weight: 700; }
+
+    .operations { padding: 112px 0 0; color: white; background: var(--ink); }
+    .operations .eyebrow { color: var(--mint); }
+    .operations-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 88px; align-items: center; }
+    .operations-copy > p:last-of-type { max-width: 500px; margin: 24px 0 0; color: #aeb8ca; font-size: 15px; line-height: 1.86; }
+    .operation-links { display: flex; gap: 24px; margin-top: 34px; color: #dbe3f2; font-size: 13px; font-weight: 700; }
+    .board { overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 14px; color: var(--ink); background: #f8faff; box-shadow: 0 34px 90px rgba(0,0,0,.3); }
+    .board-head { height: 43px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; border-bottom: 1px solid #dfe5ef; color: #7d899c; font: 600 8px/1 monospace; }
+    .board-main { min-height: 325px; padding: 25px; }
+    .board-title { display: flex; align-items: center; justify-content: space-between; }
+    .board-title span { padding: 5px 7px; border-radius: 4px; color: #12724b; background: #e2f7eb; font: 700 8px/1 monospace; }
+    .board-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 25px 0; }
+    .board-metrics div { padding: 16px; border: 1px solid #e0e6ef; border-radius: 8px; background: white; }
+    .board-metrics small { display: block; margin-bottom: 9px; color: #96a0b0; font: 8px/1 monospace; }
+    .board-rows { border-top: 1px solid #e0e6ef; }
+    .board-rows div { display: flex; justify-content: space-between; padding: 15px 2px; border-bottom: 1px solid #e0e6ef; color: #68758a; font-size: 11px; }
+    .board-rows b { color: var(--blue); }
+    .features { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 98px; border-top: 1px solid rgba(255,255,255,.17); }
+    .feature { min-height: 260px; padding: 27px 32px 38px 0; border-right: 1px solid rgba(255,255,255,.17); }
+    .feature:not(:first-child) { padding-left: 32px; }
+    .feature:last-child { border-right: 0; }
+    .feature > span { color: var(--mint); font: 700 10px/1 monospace; }
+    .feature h3 { margin: 62px 0 11px; font-size: 20px; }
+    .feature p { color: #aeb8ca; font-size: 13px; line-height: 1.82; }
+
+    .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 54px; }
+    .step { display: grid; grid-template-columns: 74px 1fr; gap: 25px; min-height: 188px; padding: 28px; border: 1px solid var(--line); background: white; }
+    .step-number { color: var(--blue); font: 700 13px/1 monospace; }
+    .step h3 { margin-bottom: 11px; font-size: 19px; }
+    .step p { color: var(--muted); font-size: 13px; line-height: 1.82; }
+
+    .compliance { padding: 113px 0 112px; background: #eef3f9; }
+    .compliance-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 94px; }
+    .compliance-copy > p:last-of-type { max-width: 510px; margin: 24px 0 0; color: var(--muted); font-size: 14px; line-height: 1.86; }
+    .registry-links { display: flex; gap: 24px; margin-top: 31px; color: var(--blue); font-size: 12px; font-weight: 750; }
+    .register { border-top: 2px solid var(--ink); }
+    .register div { display: grid; grid-template-columns: .8fr 1.2fr; gap: 20px; padding: 19px 0; border-bottom: 1px solid #cfd8e5; }
+    .register span { color: #768397; font-size: 12px; }
+    .register strong { text-align: right; font-size: 13px; }
+    .disclosures { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 90px; border-top: 1px solid #cad4e2; }
+    .disclosure { min-height: 310px; padding: 26px 32px 56px 0; border-right: 1px solid #cad4e2; }
+    .disclosure:not(:first-child) { padding-left: 32px; }
+    .disclosure:last-child { border-right: 0; }
+    .disclosure > span { color: var(--blue); font: 700 10px/1 monospace; }
+    .disclosure h3 { margin: 55px 0 12px; font-size: 19px; }
+    .disclosure p { color: var(--muted); font-size: 13px; line-height: 1.84; }
+    .disclosure a { color: var(--blue); font-size: 12px; font-weight: 750; }
+
+    .support { display: grid; grid-template-columns: 1.05fr .95fr; gap: 90px; align-items: end; padding: 115px 0 108px; }
+    .support p { color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .email { display: flex; align-items: center; justify-content: space-between; padding: 17px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-size: 14px; font-weight: 750; }
+    footer { display: grid; grid-template-columns: 1fr 1.25fr; gap: 28px 70px; padding: 39px 0 32px; border-top: 1px solid var(--line); color: var(--muted); }
+    .footer-links { display: flex; justify-content: flex-end; gap: 23px; align-items: center; color: var(--ink); font-size: 12px; font-weight: 700; }
+    .footer-note, footer small { grid-column: 1/-1; }
+    .footer-note { margin: 6px 0 0; padding-top: 25px; border-top: 1px solid var(--line); font-size: 11px; line-height: 1.75; }
+    footer small { color: #8d98a7; font-size: 10px; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-grid, .operations-grid, .compliance-grid { gap: 42px; }
+    }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 40px, 1190px); }
+      .brand small, .nav-actions .text-link { display: none; }
+      .hero-grid, .split, .operations-grid, .compliance-grid, .support { grid-template-columns: 1fr; }
+      .hero-grid { padding-top: 72px; }
+      h1 { font-size: clamp(40px, 11vw, 55px); }
+      .hero-rail { grid-template-columns: 1fr 1fr; margin-top: 65px; }
+      .capabilities, .features, .disclosures { grid-template-columns: 1fr; }
+      section.content { padding: 82px 0; }
+      .operations, .compliance { padding-top: 82px; }
+      .feature, .feature:not(:first-child), .disclosure, .disclosure:not(:first-child) { min-height: auto; padding: 25px 0 40px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+      .disclosure, .disclosure:not(:first-child) { border-bottom-color: #cad4e2; }
+      .feature h3, .disclosure h3 { margin-top: 35px; }
+      .steps { grid-template-columns: 1fr; }
+      footer { grid-template-columns: 1fr; }
+      .footer-links { justify-content: flex-start; flex-wrap: wrap; }
+      .footer-note, footer small { grid-column: 1; }
+    }
+    @media (max-width: 500px) {
+      .actions { display: grid; }
+      .button { width: 100%; }
+      .console { padding: 16px; }
+      .console-row { grid-template-columns: 38px 1fr 25px; padding-inline: 4px; font-size: 9px; }
+      .hero-rail { grid-template-columns: 1fr; }
+      .steps .step { grid-template-columns: 42px 1fr; gap: 12px; padding: 22px 18px; }
+      .register div { grid-template-columns: 1fr; gap: 7px; }
+      .register strong { text-align: left; }
+      .registry-links, .operation-links { flex-direction: column; }
+    }
+  
+/* Local redesign: open-platform navigation and capability exploration. */
+:root{--ink:#1f2329;--muted:#646a73;--blue:#3370ff;--blue-dark:#245bdb;--paper:#fff;--line:#e8eaf0}
+body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{width:min(1200px,calc(100% - 80px))} h1,h2{letter-spacing:-.035em} h2{font-size:36px;line-height:1.4;font-weight:650}
+a,button{transition:background .2s,color .2s,box-shadow .2s,transform .2s} a:focus-visible,button:focus-visible{outline:3px solid #80a7ff;outline-offset:5px}
+.hero{min-height:0;background:radial-gradient(ellipse at 85% 45%,#cfe4ff88,transparent 48%),linear-gradient(110deg,#f2f8ff,#eaf4ff 65%,#f1f4ff)}
+nav{height:76px;border:0;gap:24px}.brand{font-size:21px;letter-spacing:.01em;white-space:nowrap}.brand-mark{background:linear-gradient(140deg,#55adff,#3266ef);color:white;border-radius:10px}.brand small{font-size:12px;font-weight:500;letter-spacing:0;color:#646a73;margin-left:5px;padding-left:12px}.nav-links{font-size:14px;font-weight:500;gap:28px;margin-right:auto;margin-left:36px;white-space:nowrap}.nav-actions{font-weight:500}.nav-button{background:var(--blue);border-radius:6px;padding:11px 18px;white-space:nowrap}
+.hero-grid{grid-template-columns:1.05fr .95fr;gap:48px;padding:64px 0 72px;min-height:456px}h1{font-size:44px;line-height:1.4;font-weight:650;margin-bottom:20px}.hero-copy .eyebrow{font-size:12px;letter-spacing:.1em;font-weight:600;margin-bottom:18px}.hero-copy>p:not(.eyebrow):not(.legal){font-size:16px;line-height:1.9;max-width:520px;margin-bottom:30px}.button{border-radius:6px;min-height:46px;min-width:144px;font-weight:500}.primary{box-shadow:none}.primary:hover,.nav-button:hover{background:#245bdb;transform:translateY(-1px)}.secondary{background:transparent;border-color:#a9bce5;color:#305aa8}.secondary:hover{background:#fff}.legal{font-size:11px;color:#8b94a4}
+.console{background:rgba(255,255,255,.94);color:#293547;border:1px solid #fff;border-radius:12px;box-shadow:0 24px 70px #5e89c525;transform:perspective(1100px) rotateY(-7deg) rotateX(3deg);padding:24px}.console::after{display:none}.console-head{border-bottom:1px solid #edf0f6;color:#7a8aa2;font-size:10px;letter-spacing:0}.preview{color:#22a06b}.preview::before{background:#34c790;box-shadow:none}.console-metrics div{background:#f4f8ff;border:1px solid #e6efff;padding:20px 16px}.console small{color:#8693a7}.console-metrics strong{color:#3268df}.console-row{border-color:#edf1f7;grid-template-columns:36px 1fr 22px;padding:20px 8px;font-size:10px;align-items:center}.console-row span{display:grid;place-items:center;width:30px;height:30px;border-radius:7px;color:#3370ff;background:#eaf1ff}.console-row:nth-of-type(4) span{color:#7957cd;background:#f0eaff}.console-row code{color:#536078;font-family:inherit}.console-row b{color:#aab6c9}.console-tags span{color:#8291a8;background:#f6f8fc;border:0;font-size:8px}
+.hero-rail{margin-top:0;background:#ffffffa6;border:0;grid-template-columns:repeat(4,1fr);border-radius:8px 8px 0 0;padding:0 24px}.hero-rail span{font:400 12px/1.5 inherit;color:#697a94;padding:18px 0}
+section.content{padding:80px 0 88px}.split{display:block;text-align:center}.split .eyebrow{display:none}.split>p{max-width:760px;margin:18px auto 0;font-size:14px;line-height:1.8}.cap-tabs{display:flex;justify-content:center;gap:0;margin:38px 0 0;border-bottom:1px solid var(--line)}.cap-tab{font:500 17px/1.5 inherit;font-size:17px;flex:1;cursor:pointer;padding:20px;border:0;background:none;color:#646a73;border-bottom:3px solid transparent}.cap-tab[aria-selected=true]{color:var(--blue);border-bottom-color:var(--blue)}.cap-tab:hover{background:#f7faff}.capabilities{gap:24px;margin-top:26px}.capability{min-height:300px;padding:32px;border:1px solid #e8eef9;border-radius:12px;background:linear-gradient(130deg,#f6f9ff,#fff)}.capability h3{margin-top:32px;font-size:23px;font-weight:600}.cap-code{width:44px;height:44px;background:#e5edff;color:#3370ff;font-size:14px}.capability:nth-child(2) .cap-code{color:#8061d6;background:#eee8ff}.cap-head i{font-size:9px;font-family:inherit}.tags{border:0;padding-top:18px}.tags span{background:white;border:1px solid #e8eef9;font-weight:400;font-size:12px}.capability:hover{box-shadow:0 12px 32px #3360a410}.cap-description{margin:24px 0 0;padding:24px 30px;background:#f6f9ff;border-radius:10px;color:#536078;line-height:1.85;font-size:14px}.cap-description strong{color:#293547;font-size:19px;display:block;margin-bottom:8px}
+.operations{padding:80px 0 0;background:#f7f9fc;color:var(--ink)}.operations .eyebrow{color:var(--blue)}.operations-grid{gap:80px}.operations h2{font-size:32px}.operations-copy>p:last-of-type{color:var(--muted)}.operation-links{color:var(--blue);font-weight:500}.board{background:#fff;border:1px solid #e6ecf5;box-shadow:0 18px 50px #2f548612;border-radius:12px}.board-head{background:#f1f5fc}.features{margin-top:60px;border-top-color:#e2e8f0}.feature{min-height:210px;border-color:#e2e8f0;padding-top:28px}.feature>span{color:var(--blue);font-size:15px}.feature h3{margin-top:25px;font-weight:600}.feature p{color:var(--muted)}
+.steps{grid-template-columns:repeat(4,1fr);gap:24px;margin-top:42px}.step{display:block;min-height:235px;border:0;border-radius:10px;background:#f7f9fc;padding:26px}.step-number{display:grid;place-items:center;width:36px;height:36px;background:#e8efff;border-radius:50%;font-size:14px;margin-bottom:24px}.step h3{font-size:17px;font-weight:600;line-height:1.5}.step p{margin-bottom:0}
+.compliance{background:#fafbfc;padding:70px 0}.compliance h2{font-size:28px}.compliance .eyebrow{font-size:10px}.register{border-top:1px solid #dce3ec}.register div{border-bottom-color:#e6eaf0}.register strong{font-weight:500;line-height:1.6}.support{padding:70px 0;gap:60px}.support h2{font-size:30px}.email{border:0;display:inline-flex;gap:32px;color:#fff;background:var(--blue);border-radius:6px;padding:13px 20px;font-weight:500}footer{font-size:12px;padding-top:35px}.footer-links{font-weight:400}.eyebrow{font-weight:500}
+@media(min-width:1100px){.hero-copy h1{white-space:nowrap}}
+@media(max-width:1100px){.brand small{display:none}.nav-links{gap:18px;margin-left:10px}.hero-grid{gap:30px}h1{font-size:38px}.console{padding:18px}.steps{gap:12px}.step{padding:20px}}
+@media(max-width:900px){.nav-links{display:none}.nav-actions{margin-left:auto}.hero-grid{grid-template-columns:1fr 1fr}h1{font-size:32px}.hero-copy>p:not(.eyebrow):not(.legal){font-size:14px}.steps{grid-template-columns:1fr 1fr}.hero-rail{grid-template-columns:1fr 1fr}.operations-grid{gap:30px}.operations h2{font-size:28px}}
+@media(max-width:760px){.wrap{width:calc(100% - 40px)}nav{height:68px}.hero-grid{grid-template-columns:1fr;padding:40px 0;gap:40px}h1{font-size:34px;line-height:1.4}.hero-copy .eyebrow{font-size:10px}.console{transform:none;max-width:520px;width:100%;box-sizing:border-box;margin:auto}.hero-rail{padding:8px 14px}.hero-rail span{font-size:10px;padding:9px 0}.capabilities{grid-template-columns:1fr}.cap-tab{padding:16px 4px;font-size:14px}h2{font-size:28px}section.content{padding:56px 0}.operations{padding-top:56px}.operations-grid{grid-template-columns:1fr}.features{margin-top:35px}.feature,.feature:not(:first-child){border-bottom-color:#e2e8f0;padding:24px 0}.feature h3{margin-top:16px}.compliance{padding:50px 0}.compliance-grid{gap:28px}.support{padding:50px 0;gap:24px}.capability{min-height:270px;padding:24px}.cap-description{padding:22px}.steps{gap:12px}.step{min-height:240px}.step h3{font-size:16px}}
+@media(max-width:500px){.actions{display:flex;gap:10px}.button{width:auto;min-width:0;padding:0 16px;font-size:13px}.hero-rail{grid-template-columns:1fr 1fr}.steps .step{display:block;padding:20px 16px}.console-row{font-size:9px}.cap-head i{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}a,button{transition:none}}
+
+
+/* Keep cards focused on content, without decorative numbering. */
+.step{min-height:170px}.feature h3{margin-top:0}.console-row{grid-template-columns:36px 1fr}
+@media(max-width:760px){.step{min-height:185px}.feature h3{margin-top:0}}
+
+/* Restrained presentation: plain labels and flat surfaces. */
+.console{transform:none;box-shadow:0 8px 28px #34537a0d}.primary:hover,.nav-button:hover{transform:none}.capability:hover{box-shadow:none}.capability{background:#f7f9fc}.hero{background:#f0f6ff}.brand-mark{background:#3370ff}.cap-head i{color:#788291;font-size:11px;font-style:normal}.hero-copy h1{margin-top:0}.console-tags{display:none}.email{gap:0}.board{box-shadow:none}
+
+.brand-logo{display:block;width:auto;height:38px;object-fit:contain}.brand{gap:0}.brand small{margin-left:18px}footer .brand-logo{height:34px}
+@media(max-width:760px){.brand-logo{height:34px}}
+
+/* Match action buttons to the BG Nexus logo. */
+.nav-button,.button.primary,.email{background:#101313;color:#fff;box-shadow:none}
+.nav-button:hover,.button.primary:hover,.email:hover{background:#292d2d;color:#fff}
+.button.secondary{color:#101313;border-color:#bfc3c3}
+.button.secondary:hover{color:#101313;border-color:#101313;background:#fff}
+
+/* Service names stand alone without letter badges. */
+.cap-head{justify-content:flex-end}.capability h3{margin-top:18px}.console-row{grid-template-columns:1fr;padding:18px 8px}
+
+.platform-art{margin:0;min-width:0}.platform-art img{display:block;width:100%;height:auto;mix-blend-mode:multiply}.hero-grid{grid-template-columns:1fr 1.15fr;gap:24px;padding:60px 0 76px;min-height:490px}
+@media(min-width:1100px){.hero-copy h1{font-size:40px}.platform-art{margin-right:-24px}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr 1fr}.hero-copy h1{font-size:30px}}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr;padding:40px 0 32px;gap:24px;min-height:0}.hero-copy h1{font-size:34px}.platform-art{margin:0 -10px}}
+
+.platform-art img{mix-blend-mode:normal;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 92%,transparent);mask-composite:intersect;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 92%,transparent);-webkit-mask-composite:source-in}
+
+/* Feather the artwork into the hero and add a slow, restrained float. */
+.platform-art{position:relative;isolation:isolate;animation:platform-float 8s ease-in-out infinite}
+.platform-art img{mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse 66% 66% at 50% 50%,#000 52%,rgba(0,0,0,.92) 64%,transparent 86%);mask-image:radial-gradient(ellipse 66% 66% at 50% 50%,#000 52%,rgba(0,0,0,.92) 64%,transparent 86%);-webkit-mask-composite:source-over;mask-composite:add}
+.platform-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#f0f6ff,transparent 12%,transparent 88%,#f0f6ff),linear-gradient(0deg,#f0f6ff,transparent 14%,transparent 86%,#f0f6ff)}
+@keyframes platform-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.platform-art{animation:none}}
+
+/* Transmission follows the physical links; the illustration itself stays still. */
+.platform-art{animation:none}.transfer-flow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:visible}
+@media(prefers-reduced-motion:reduce){.transfer-flow{display:none}}
+
+/* Long, feathered light sweeps inside the glass conduits. */
+.transmission-core,.transmission-glow{fill:none;stroke-linecap:butt;stroke-dasharray:none;animation:none}
+.transmission-core{stroke-width:3;opacity:.8}.transmission-glow{stroke-width:15;opacity:.55;filter:url(#transmission-bloom)}
+
+/* Coordinated cycle: integration, hub response, then compliance and settlement. */
+.transmission-core{stroke-width:5.5;opacity:1}
+.transmission-glow{stroke-width:24;opacity:.9}
+.module-response{opacity:0;animation:module-response 6s ease-in-out var(--response-delay) infinite}
+.module-edge,.module-bloom{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.module-edge{stroke:#9dcbff;stroke-width:3.5}.module-bloom{stroke:#488dff;stroke-width:17;filter:url(#module-soft)}
+.module-hub .module-edge{stroke:#dbedff;stroke-width:5}.module-hub .module-bloom{stroke-width:23}
+@keyframes module-response{0%,38%,100%{opacity:0}7%{opacity:.4}15%,21%{opacity:.95}30%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.module-response{animation:none;opacity:0}}
+
+
+/* Individual currency layers move with soft contact shadows, without glow. */
+.coin-scene{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:visible}
+.coin-actor{transform-box:fill-box;transform-origin:50% 65%;animation:coin-rise 4.8s ease-in-out var(--coin-delay) infinite}
+.coin-ground-shadow{fill:#26354d;filter:url(#coin-shadow-soft);transform-box:fill-box;transform-origin:center;animation:coin-contact 4.8s ease-in-out var(--coin-delay) infinite}
+@keyframes coin-rise{0%,100%{transform:translateY(0) rotate(var(--coin-rest)) scaleX(1)}45%,55%{transform:translateY(-23px) rotate(calc(var(--coin-rest) + 5deg)) scaleX(.94)}}
+@keyframes coin-contact{0%,100%{opacity:.2;transform:scale(1)}45%,55%{opacity:.08;transform:scale(1.18,.85)}}
+@media(prefers-reduced-motion:reduce){.coin-actor{animation:none;transform:rotate(var(--coin-rest))}.coin-ground-shadow{animation:none;opacity:.16}}
+
+
+/* Physical key press, followed by the engraved BG Nexus illumination. */
+.hub-scene{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.hub-cap-press{transform-box:fill-box;transform-origin:50% 90%;animation:hub-keypress 6s infinite}
+.hub-word-light{opacity:0;animation:hub-word-light 6s ease-in-out infinite}
+.transfer-flow{z-index:2}.coin-scene{z-index:3}
+@keyframes hub-keypress{0%,27%,53%,100%{transform:translateY(0);animation-timing-function:cubic-bezier(.4,0,.6,1)}34%,38%{transform:translateY(14px);animation-timing-function:cubic-bezier(.2,.75,.3,1)}45%{transform:translateY(-2px);animation-timing-function:ease-out}49%{transform:translateY(1px)}}
+@keyframes hub-word-light{0%,27%,68%,100%{opacity:0}34%{opacity:.7}39%,47%{opacity:1}55%{opacity:.4}}
+@media(prefers-reduced-motion:reduce){.hub-cap-press{animation:none;transform:none}.hub-word-light{animation:none;opacity:0}}
+
+
+.nav-button:active,.button:active,.email:active{transform:translateY(2px) scale(.98);box-shadow:inset 0 2px 4px #0002}
+@media(prefers-reduced-motion:reduce){.nav-button:active,.button:active,.email:active{transform:none}}
+
+/* Operations: matching static artwork and clear action buttons. */
+.operation-links{display:flex;flex-direction:row;flex-wrap:wrap;gap:12px;margin-top:30px}
+.operation-links .primary{color:#fff;background:#101313}.operation-links .secondary{color:#101313;border-color:#bfc3c3;background:transparent}
+.operation-links .primary:hover{background:#292d2d}.operation-links .secondary:hover{border-color:#101313;background:#fff}
+.operations-art{position:relative;margin:0;min-width:0;isolation:isolate}
+.operations-art img{display:block;width:100%;height:auto;-webkit-mask-image:radial-gradient(ellipse 69% 69% at 50% 50%,#000 53%,#000 62%,transparent 87%);mask-image:radial-gradient(ellipse 69% 69% at 50% 50%,#000 53%,#000 62%,transparent 87%)}
+.operations-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#f7f9fc,transparent 10%,transparent 90%,#f7f9fc),linear-gradient(0deg,#f7f9fc,transparent 12%,transparent 88%,#f7f9fc)}
+@media(max-width:760px){.operations-grid{gap:30px}.operation-links{gap:10px}.operations-art{margin:0 -10px}}
+
+/* Consistent button treatment for all body actions, including registry links. */
+.registry-links{flex-direction:row;flex-wrap:wrap;gap:12px}
+.registry-links .button,.cap-description .button{color:#101313;font-weight:500;font-size:13px;border-color:#bfc3c3;background:transparent}
+.registry-links .button:hover,.cap-description .button:hover{border-color:#101313;background:#fff}
+@media(max-width:500px){.registry-links{gap:10px}.registry-links .button{min-width:0;padding-inline:16px}}
+
+footer .brand{gap:10px}footer .brand-logo{width:42px;height:42px;margin:-4px;object-fit:contain}footer .brand-wordmark{font-size:23px;font-weight:650;letter-spacing:-.025em;color:#101313}
+</style>
+<link rel="stylesheet" href="/site-nav.css?v=nexus-logo">
+<link rel="stylesheet" href="/product-capabilities.css?v=product-icons-simple">
+<script src="/product-capabilities.js?v=nexus-logo" defer></script>
+<script src="/site-routes.js?v=auth-design" defer></script>
+<script src="/site-nav.js?v=nexus-logo" defer></script>
+<link rel="icon" type="image/png" href="/bg-nexus-logo.png">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div data-bgx-navigation></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          
+          <h1>让跨境金融服务，<br>从接入到运营更高效。</h1>
+          <p>BG Nexus 将外汇与跨境支付运营纳入统一运营环境，贯通服务申请、系统集成、权限管理、状态可视化与持续运营。</p>
+          <div class="actions"><a class="button primary" href="/docs/">查看 API 文档</a><a class="button secondary" href="/login/">进入商户控制台</a></div>
+          <p class="legal">具体服务范围及接入安排以审核结果和适用协议为准。</p>
+        </div>
+        <figure class="platform-art"><img src="bgx-hub-socket.png" width="1536" height="1024" fetchpriority="high" alt="BG Nexus 跨境金融平台：连接标准化接口、测试与生产环境、合规管理及多币种结算与运营追踪。"><svg class="transfer-flow" viewBox="0 0 1536 1024" aria-hidden="true" focusable="false"><defs><filter id="transmission-bloom" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter><linearGradient id="light-in-left" gradientUnits="userSpaceOnUse" spreadMethod="pad"><animate attributeName="x1" values="209.35;536.00;536.00" keyTimes="0;0.5;1" dur="6s" begin="-5.85s" repeatCount="indefinite"/><animate attributeName="y1" values="193.00;381.00;381.00" keyTimes="0;0.5;1" dur="6s" begin="-5.85s" repeatCount="indefinite"/><animate attributeName="x2" values="397.00;723.65;723.65" keyTimes="0;0.5;1" dur="6s" begin="-5.85s" repeatCount="indefinite"/><animate attributeName="y2" values="301.00;489.00;489.00" keyTimes="0;0.5;1" dur="6s" begin="-5.85s" repeatCount="indefinite"/><stop offset="0" stop-color="#78baff" stop-opacity="0"/><stop offset=".28" stop-color="#4b91ff" stop-opacity=".5"/><stop offset=".55" stop-color="#79b4ff" stop-opacity="1"/><stop offset=".76" stop-color="#ecf8ff" stop-opacity="1"/><stop offset="1" stop-color="#94cdff" stop-opacity="0"/></linearGradient><linearGradient id="edge-in-left" gradientUnits="userSpaceOnUse" x1="397" y1="301" x2="536" y2="381"><stop stop-color="white" stop-opacity="0"/><stop offset=".15" stop-color="white"/><stop offset=".85" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="channel-in-left" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024"><rect width="1536" height="1024" fill="url(#edge-in-left)"/></mask><linearGradient id="light-in-right" gradientUnits="userSpaceOnUse" spreadMethod="pad"><animate attributeName="x1" values="1287.85;980.00;980.00" keyTimes="0;0.5;1" dur="6s" begin="-5.5s" repeatCount="indefinite"/><animate attributeName="y1" values="190.75;367.00;367.00" keyTimes="0;0.5;1" dur="6s" begin="-5.5s" repeatCount="indefinite"/><animate attributeName="x2" values="1111.00;803.15;803.15" keyTimes="0;0.5;1" dur="6s" begin="-5.5s" repeatCount="indefinite"/><animate attributeName="y2" values="292.00;468.25;468.25" keyTimes="0;0.5;1" dur="6s" begin="-5.5s" repeatCount="indefinite"/><stop offset="0" stop-color="#78baff" stop-opacity="0"/><stop offset=".28" stop-color="#4b91ff" stop-opacity=".5"/><stop offset=".55" stop-color="#79b4ff" stop-opacity="1"/><stop offset=".76" stop-color="#ecf8ff" stop-opacity="1"/><stop offset="1" stop-color="#94cdff" stop-opacity="0"/></linearGradient><linearGradient id="edge-in-right" gradientUnits="userSpaceOnUse" x1="1111" y1="292" x2="980" y2="367"><stop stop-color="white" stop-opacity="0"/><stop offset=".15" stop-color="white"/><stop offset=".85" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="channel-in-right" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024"><rect width="1536" height="1024" fill="url(#edge-in-right)"/></mask><linearGradient id="light-out-left" gradientUnits="userSpaceOnUse" spreadMethod="pad"><animate attributeName="x1" values="867.10;430.00;430.00" keyTimes="0;0.5;1" dur="6s" begin="-3.85s" repeatCount="indefinite"/><animate attributeName="y1" values="385.10;653.00;653.00" keyTimes="0;0.5;1" dur="6s" begin="-3.85s" repeatCount="indefinite"/><animate attributeName="x2" values="616.00;178.90;178.90" keyTimes="0;0.5;1" dur="6s" begin="-3.85s" repeatCount="indefinite"/><animate attributeName="y2" values="539.00;806.90;806.90" keyTimes="0;0.5;1" dur="6s" begin="-3.85s" repeatCount="indefinite"/><stop offset="0" stop-color="#78baff" stop-opacity="0"/><stop offset=".28" stop-color="#4b91ff" stop-opacity=".5"/><stop offset=".55" stop-color="#79b4ff" stop-opacity="1"/><stop offset=".76" stop-color="#ecf8ff" stop-opacity="1"/><stop offset="1" stop-color="#94cdff" stop-opacity="0"/></linearGradient><linearGradient id="edge-out-left" gradientUnits="userSpaceOnUse" x1="616" y1="539" x2="430" y2="653"><stop stop-color="white" stop-opacity="0"/><stop offset=".15" stop-color="white"/><stop offset=".85" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="channel-out-left" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024"><rect width="1536" height="1024" fill="url(#edge-out-left)"/></mask><linearGradient id="light-out-right" gradientUnits="userSpaceOnUse" spreadMethod="pad"><animate attributeName="x1" values="659.65;1085.00;1085.00" keyTimes="0;0.5;1" dur="6s" begin="-3.5s" repeatCount="indefinite"/><animate attributeName="y1" values="377.75;648.00;648.00" keyTimes="0;0.5;1" dur="6s" begin="-3.5s" repeatCount="indefinite"/><animate attributeName="x2" values="904.00;1329.35;1329.35" keyTimes="0;0.5;1" dur="6s" begin="-3.5s" repeatCount="indefinite"/><animate attributeName="y2" values="533.00;803.25;803.25" keyTimes="0;0.5;1" dur="6s" begin="-3.5s" repeatCount="indefinite"/><stop offset="0" stop-color="#78baff" stop-opacity="0"/><stop offset=".28" stop-color="#4b91ff" stop-opacity=".5"/><stop offset=".55" stop-color="#79b4ff" stop-opacity="1"/><stop offset=".76" stop-color="#ecf8ff" stop-opacity="1"/><stop offset="1" stop-color="#94cdff" stop-opacity="0"/></linearGradient><linearGradient id="edge-out-right" gradientUnits="userSpaceOnUse" x1="904" y1="533" x2="1085" y2="648"><stop stop-color="white" stop-opacity="0"/><stop offset=".15" stop-color="white"/><stop offset=".85" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient><mask id="channel-out-right" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024"><rect width="1536" height="1024" fill="url(#edge-out-right)"/></mask><filter id="module-soft" x="-60%" y="-100%" width="220%" height="300%"><feGaussianBlur stdDeviation="9"/></filter><radialGradient id="module-light"><stop offset="0" stop-color="#6ca7ff" stop-opacity=".4"/><stop offset=".6" stop-color="#80b9ff" stop-opacity=".2"/><stop offset="1" stop-color="#9bc9ff" stop-opacity="0"/></radialGradient></defs><g class="transmission-channel" mask="url(#channel-in-left)"><path d="M 397 301 L 536 381 M 389 318 L 527 397" stroke="url(#light-in-left)" class="transmission-glow"/><path d="M 397 301 L 536 381 M 389 318 L 527 397" stroke="url(#light-in-left)" class="transmission-core"/></g><g class="transmission-channel" mask="url(#channel-in-right)"><path d="M 1111 292 L 980 367 M 1125 312 L 990 389" stroke="url(#light-in-right)" class="transmission-glow"/><path d="M 1111 292 L 980 367 M 1125 312 L 990 389" stroke="url(#light-in-right)" class="transmission-core"/></g><g class="transmission-channel" mask="url(#channel-out-left)"><path d="M 616 539 L 430 653 M 628 560 L 443 674" stroke="url(#light-out-left)" class="transmission-glow"/><path d="M 616 539 L 430 653 M 628 560 L 443 674" stroke="url(#light-out-left)" class="transmission-core"/></g><g class="transmission-channel" mask="url(#channel-out-right)"><path d="M 904 533 L 1085 648 M 892 554 L 1069 671" stroke="url(#light-out-right)" class="transmission-glow"/><path d="M 904 533 L 1085 648 M 892 554 L 1069 671" stroke="url(#light-out-right)" class="transmission-core"/></g><g class="module-response module-api" style="--response-delay:0s"><ellipse cx="303" cy="298" rx="166" ry="42" fill="url(#module-light)"/><path class="module-bloom" d="M 169 174 L 221 145 L 278 176 L 278 249 L 226 282 L 168 248 M 259 86 L 321 51 L 384 87 L 384 158 M 350 154 L 411 119 L 466 151 L 466 233 L 411 265"/><path class="module-edge" d="M 169 174 L 221 145 L 278 176 L 278 249 L 226 282 L 168 248 M 259 86 L 321 51 L 384 87 L 384 158 M 350 154 L 411 119 L 466 151 L 466 233 L 411 265"/></g><g class="module-response module-environment" style="--response-delay:0.35s"><ellipse cx="1210" cy="306" rx="159" ry="43" fill="url(#module-light)"/><path class="module-bloom" d="M 1090 112 L 1187 59 Q 1202 50 1219 59 L 1330 119 Q 1344 127 1332 138 L 1230 196 Q 1213 207 1198 199 L 1093 140 Q 1077 132 1090 112 M 1085 214 L 1204 279 Q 1216 285 1231 277 L 1333 218"/><path class="module-edge" d="M 1090 112 L 1187 59 Q 1202 50 1219 59 L 1330 119 Q 1344 127 1332 138 L 1230 196 Q 1213 207 1198 199 L 1093 140 Q 1077 132 1090 112 M 1085 214 L 1204 279 Q 1216 285 1231 277 L 1333 218"/></g><g class="module-response module-compliance" style="--response-delay:3.35s"><ellipse cx="301" cy="770" rx="153" ry="47" fill="url(#module-light)"/><path class="module-bloom" d="M 202 522 Q 256 518 296 493 Q 339 544 396 566 L 394 620 Q 387 687 322 727 Q 248 701 225 642 Q 208 601 202 522"/><path class="module-edge" d="M 202 522 Q 256 518 296 493 Q 339 544 396 566 L 394 620 Q 387 687 322 727 Q 248 701 225 642 Q 208 601 202 522"/></g></svg><svg class="coin-scene" viewBox="0 0 1536 1024" aria-hidden="true" focusable="false"><defs><filter id="coin-shadow-soft" x="-70%" y="-120%" width="240%" height="340%"><feGaussianBlur stdDeviation="5"/></filter></defs><ellipse class="coin-ground-shadow" cx="1171.0" cy="670" rx="38.879999999999995" ry="10" style="--coin-delay:0s"/><ellipse class="coin-ground-shadow" cx="1262.5" cy="714" rx="37.08" ry="10" style="--coin-delay:-0.9s"/><ellipse class="coin-ground-shadow" cx="1330.0" cy="810" rx="34.56" ry="10" style="--coin-delay:-2.5s"/><ellipse class="coin-ground-shadow" cx="1244.5" cy="793" rx="39.96" ry="10" style="--coin-delay:-1.7s"/><g class="coin-actor coin-usd" style="--coin-delay:0s;--coin-rest:-3deg"><svg x="1117" y="556" width="108" height="116" viewBox="211 75 375 397" overflow="hidden"><image href="bgx-currency-coins.png" width="1536" height="1024"/></svg></g><g class="coin-actor coin-eur" style="--coin-delay:-0.9s;--coin-rest:2deg"><svg x="1211" y="605" width="103" height="111" viewBox="976 75 375 397" overflow="hidden"><image href="bgx-currency-coins.png" width="1536" height="1024"/></svg></g><g class="coin-actor coin-yen" style="--coin-delay:-2.5s;--coin-rest:3deg"><svg x="1282" y="708" width="96" height="104" viewBox="976 571 375 397" overflow="hidden"><image href="bgx-currency-coins.png" width="1536" height="1024"/></svg></g><g class="coin-actor coin-gbp" style="--coin-delay:-1.7s;--coin-rest:-4deg"><svg x="1189" y="677" width="111" height="118" viewBox="211 571 375 397" overflow="hidden"><image href="bgx-currency-coins.png" width="1536" height="1024"/></svg></g></svg><svg class="hub-scene" viewBox="0 0 1536 1024" aria-hidden="true" focusable="false"><defs><clipPath id="hub-cap-outline"><path d="M 720 257 Q 764 238 808 257 L 965 348 Q 992 365 994 395 L 997 440 Q 997 468 969 486 L 803 583 Q 763 602 719 579 L 548 483 Q 522 468 521 436 L 523 394 Q 523 366 550 348 Z"/></clipPath><radialGradient id="hub-word-fade"><stop offset="0" stop-color="white"/><stop offset=".72" stop-color="white"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient><mask id="hub-word-mask" maskUnits="userSpaceOnUse" x="586" y="270" width="350" height="226"><ellipse cx="761" cy="383" rx="175" ry="113" fill="url(#hub-word-fade)"/></mask><linearGradient id="hub-scan" gradientUnits="userSpaceOnUse" x1="530" y1="0" x2="990" y2="0"><stop stop-color="white" stop-opacity="0"/><stop offset=".3" stop-color="white" stop-opacity="0"/><stop offset=".5" stop-color="white"/><stop offset=".7" stop-color="white" stop-opacity="0"/><stop offset="1" stop-color="white" stop-opacity="0"/></linearGradient></defs><g class="hub-cap-press" clip-path="url(#hub-cap-outline)"><image href="bg-nexus-hub.png" width="1536" height="1024"/><image class="hub-word-light" href="bg-nexus-hub-lit.png" width="1536" height="1024" mask="url(#hub-word-mask)"/></g></svg></figure>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <section class="content product-capabilities" id="capabilities" aria-labelledby="product-capabilities-title"><div class="wrap">
+      <div class="product-intro"><h2 id="product-capabilities-title">产品能力</h2></div>
+      <div class="product-tabs" role="tablist" aria-label="产品能力"></div>
+      <div data-product-panels></div>
+      <noscript><div class="product-fallback"><h3>外汇服务</h3><p>支持企业换汇、汇率询价、交易指令、资金调度与结算支持。</p><h3>跨境支付运营</h3><p>支持支付服务接入、收付款信息、付款指令、状态追踪与对账支持。</p><a class="button primary" href="/docs/">查看 API 文档</a></div></noscript>
+    </div></section>
+
+    <section class="operations" id="operations"><div class="wrap">
+      <div class="operations-grid">
+        <div class="operations-copy"><h2>从接口调用到日常运营，保持同一套工作视图。</h2><p>通过 Sandbox、标准化 API 与商户控制台，统一管理服务接入、权限配置、处理状态、结算对账及日常运营。</p><div class="operation-links"><a class="button primary" href="/docs/">前往 API 文档</a><a class="button secondary" href="/login/">打开商户控制台</a></div></div>
+        <figure class="operations-art"><img src="bg-nexus-operations.png" width="1536" height="1024" loading="lazy" decoding="async" alt="BG Nexus 运营管理：以权限钥匙与锁、状态节点、对账账册和多币种结算组成的立体插画。"></figure>
+      </div>
+      <div class="features"><article class="feature"><h3>统一接入</h3><p>通过 Sandbox、标准化 API 与商户控制台接入服务，并在统一环境中管理业务流程。</p></article><article class="feature"><h3>状态与结算对账</h3><p>集中查询服务申请与处理状态，为结算、对账及日常运营提供清晰的数据依据。</p></article><article class="feature"><h3>权限与运营协同</h3><p>将权限配置、状态管理与持续运营纳入统一流程，支持各环节之间的协同管理。</p></article></div>
+    </div></section>
+
+    <section class="content" id="onboarding"><div class="wrap">
+      <div class="split"><div><h2>从接入到上线，每一步都清晰</h2></div><p>完成企业资料提交后，将根据具体服务需求开展业务、合规及风险审核，并在完成相关流程后配置测试与生产环境权限。</p></div>
+      <div class="steps"><article class="step"><div><h3>提交企业资料</h3><p>提供企业主体、实际受益人、授权人员及预期业务范围等必要信息。</p></div></article><article class="step"><div><h3>完成业务及合规审核</h3><p>根据具体服务需求完成业务、合规及风险审核。</p></div></article><article class="step"><div><h3>接入测试环境</h3><p>配置测试环境权限，完成接口配置、签名验证及业务流程联调。</p></div></article><article class="step"><div><h3>启用生产环境</h3><p>完成相关流程后，根据确认的服务范围配置生产环境权限。</p></div></article></div>
+    </div></section>
+
+    <section class="compliance" id="compliance"><div class="wrap">
+      <div class="compliance-grid"><div class="compliance-copy"><h2>公司与登记信息。</h2><p>以下信息用于核验 BGG Markets Limited 的法律主体、注册地址及金融服务提供商登记信息。</p><div class="registry-links"><a class="button secondary" href="https://app.companiesoffice.govt.nz/co/9445689" target="_blank" rel="noreferrer">查看公司登记</a><a class="button secondary" href="https://fsp-register.companiesoffice.govt.nz/" target="_blank" rel="noreferrer">查看 FSPR 登记</a></div></div>
+        <div class="register"><div><span>法律实体</span><strong>BGG Markets Limited</strong></div><div><span>注册地址</span><strong>18 Wye Oak Drive, Schnapper Rock, Auckland 0632, New Zealand</strong></div><div><span>FSP 编号</span><strong>FSP1013202</strong></div></div></div>
+    </div></section>
+
+    <section><div class="wrap support"><div><h2>准备接入 BG Nexus？</h2></div><div><p>如需进一步了解服务范围、接入条件、费用结构及实施安排，请联系业务团队。</p><a class="email" href="/login/">通过商户控制台联系 </a></div></div></section>
+  </main>
+
+  <footer class="wrap"><div><a class="brand" href="#top"><img class="brand-logo" src="bg-nexus-logo.png" alt="" width="1067" height="1067"><strong class="brand-wordmark">BG Nexus</strong></a><p style="margin:14px 0 0;font-size:12px">BG Nexus - BGG Markets Limited 旗下企业金融服务接入与运营管理平台。</p></div><div class="footer-links"><a href="/docs/">API 文档</a><a href="/login/">商户控制台</a><a href="#compliance">公司与登记信息</a><a href="mailto:compliance@bggmarkets.global">合规联系</a></div><p class="footer-note">平台所载信息仅用于一般业务介绍，不构成投资建议或投资产品要约。最终服务内容以双方确认及适用协议为准。</p><small>© 2026 BGG Markets Limited. Company No. 9445689 · NZBN 9429053846945 · Compliance: <a href="mailto:compliance@bggmarkets.global">compliance@bggmarkets.global</a></small></footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.bg-product-docs .bg-doc-pending{padding:24px;border:1px solid #e4e7eb;border-radius:8px;background:#f7f9fc;margin:20px 0 32px}
+.bg-product-docs .bg-doc-pending strong{display:block;font-size:17px;color:#303742;font-weight:600}
+.bg-product-docs .bg-doc-pending p{margin:10px 0 0;color:#697281;font-size:14px}
+.bg-product-docs .bg-product-api-group{margin-top:40px}
+.bgx-docs-host .bg-product-doc-actions{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.bgx-docs-host .bg-product-doc-actions .site-docs-btn{border:1px solid #bfc3c3;border-radius:6px;padding:10px 16px;text-decoration:none;color:#101313;background:#fff;font-size:13px;font-weight:500;box-shadow:none}
+.bgx-docs-host .bg-product-doc-actions .site-docs-btn:hover{border-color:#101313;background:#f5f6f7}
+.bg-product-docs h2{scroll-margin-top:96px}
+@media(max-width:760px){.bg-product-docs .bg-doc-pending{padding:20px}.bgx-docs-host .bg-product-doc-actions .site-docs-btn{padding:9px 12px}}

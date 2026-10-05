@@ -1,0 +1,70 @@
+/* BG Nexus product capabilities: brand color, business imagery, and continuous surfaces. */
+#capabilities{
+  --product-accent:#5367cb;
+  --product-mint:#8de3cc;
+  --product-ink:#202a3b;
+  position:relative;isolation:isolate;scroll-margin-top:20px;
+  padding:76px 0 80px;
+  background:linear-gradient(180deg,#f0f6ff 0%,#f8faff 14%,#fff 35%,#f8faff 77%,#f7f9fc 100%);
+}
+.product-intro{text-align:center;margin:0 auto}
+.product-intro h2{color:var(--product-ink);text-wrap:balance;letter-spacing:-.025em}
+.product-tabs{display:flex;align-items:stretch;gap:24px;margin:32px 0 0;border-bottom:1px solid #dce3ef;overflow-x:auto;scrollbar-width:thin;scroll-snap-type:x proximity}
+.product-tab{position:relative;flex:1 0 154px;display:flex;align-items:center;justify-content:center;gap:11px;min-height:70px;padding:18px 20px;border:0;border-radius:9px 9px 0 0;background:transparent;color:#727c8c;font:inherit;font-size:18px;font-weight:500;line-height:1.5;white-space:nowrap;cursor:pointer;scroll-snap-align:start;transition:color .2s,background .2s}
+.product-tab::after{content:"";position:absolute;height:3px;inset:auto 22px 0;border-radius:3px 3px 0 0;background:linear-gradient(90deg,#6d7de6 0%,#6d7de6 78%,#8de3cc 100%);opacity:0;transition:opacity .2s}
+.product-tab:hover{background:#edf1fc80;color:var(--product-accent)}
+.product-tab[aria-selected="true"]{color:var(--product-accent);background:linear-gradient(180deg,#eef1ff22,#e9eeffb3);font-weight:600}
+.product-tab[aria-selected="true"]::after{opacity:1}
+.product-tab-symbol{display:flex;align-items:center;justify-content:center;flex:none;width:22px;height:22px}
+.product-tab-symbol svg{width:100%;height:100%}
+.product-tab:focus-visible,.product-actions a:focus-visible{outline:2px solid #6678df;outline-offset:-4px}
+.product-panel{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:center;padding-top:38px;min-width:0;animation:product-reveal .3s ease-out both}
+.product-panel[hidden]{display:none}
+.product-copy{min-width:0;padding:14px 0}
+.product-status{display:block;color:#7a869b;font-size:12px;letter-spacing:.02em;margin-bottom:14px}
+.product-copy h3{font-size:32px;line-height:1.45;letter-spacing:-.035em;font-weight:600;color:var(--product-ink);margin:0 0 18px}
+.product-copy>p{max-width:440px;color:#657087;font-size:15px;line-height:1.9;margin:0 0 25px}
+.product-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;margin:0 0 32px;padding:0;list-style:none}
+.product-features li{padding:0 0 0 12px;border-left:2px solid #bcc7f4;color:#45536e;font-size:14px;line-height:1.5}
+#capabilities[data-product="payments"] .product-features li{border-left-color:#a2dcd3}
+.product-actions{display:flex;flex-wrap:wrap;gap:12px}
+.product-actions .button{min-width:0;padding:0 20px;font-size:13px;min-height:46px}
+.product-actions .button.secondary{border-color:#c5cfdf;background:#ffffff80;color:#33415a}
+.product-actions .button.secondary:hover{border-color:#8293d8;background:#f3f5ff}
+.product-media{margin:0;min-width:0}
+.product-video-stage{position:relative;aspect-ratio:16/11;isolation:isolate;overflow:hidden;border-radius:16px;background:transparent}
+.product-video-stage.has-video{background:#101313;box-shadow:0 8px 30px #23344d0c}
+.product-video-stage video{display:block;width:100%;height:100%;object-fit:contain;background:#101313}
+.product-video-stage video[hidden],.product-video-placeholder[hidden]{display:none}
+.product-video-placeholder{position:absolute;inset:0}
+.product-poster{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent),linear-gradient(0deg,transparent,#000 10%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent),linear-gradient(0deg,transparent,#000 10%,#000 88%,transparent);mask-composite:intersect}
+.product-poster-fallback{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,#edf2fc,#eaf7f4);border-radius:16px}
+.product-poster-fallback img{width:64px;height:64px;opacity:.6}
+.product-video-caption{position:absolute;inset:auto 25px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border:1px solid #ffffffd9;border-radius:10px;background:#ffffffd9;box-shadow:0 4px 20px #53678907;backdrop-filter:blur(10px);color:#7c879a;font-size:12px;line-height:1.5}
+.product-video-label{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#5669b8}
+.product-video-label svg{width:20px;height:20px;flex:none}
+.product-media figcaption{margin-top:12px;color:#8a909a;font-size:12px;line-height:1.6}
+.product-fallback{margin-top:30px;color:var(--muted);line-height:1.8}
+@keyframes product-reveal{from{opacity:.25;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1050px){
+  #capabilities{padding:64px 0 70px}
+  .product-panel{gap:32px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .product-copy h3{font-size:28px}.product-copy>p{font-size:14px}
+  .product-features{gap:12px 16px}.product-features li{font-size:13px}
+  .product-actions{gap:10px}.product-actions .button{padding:0 14px}
+  .product-video-caption{inset:auto 16px 10px;padding:12px}
+}
+@media(max-width:760px){
+  #capabilities{padding:48px 0 54px}
+  .product-tabs{gap:12px;margin-top:24px}.product-tab{flex-basis:145px;gap:8px;font-size:16px;min-height:60px;padding:14px 10px}
+  .product-tab-symbol{width:20px;height:20px}.product-tab::after{left:10px;right:10px}
+  .product-panel{grid-template-columns:1fr;gap:20px;padding-top:28px}
+  .product-copy{padding:0}.product-status{margin-bottom:10px;font-size:11px}
+  .product-copy h3{font-size:27px;margin-bottom:14px}.product-copy>p{margin-bottom:22px;max-width:none}
+  .product-features{gap:13px 20px;margin-bottom:26px}.product-features li{font-size:13px}
+  .product-actions .button{padding:0 16px;min-height:44px}
+  .product-media{margin:0 -10px}.product-video-stage{aspect-ratio:16/11}
+  .product-video-caption{inset:auto 14px 5px;padding:11px 12px;font-size:11px}
+  .product-video-label{font-size:12px}.product-video-label svg{width:18px;height:18px}
+}
+@media(prefers-reduced-motion:reduce){.product-panel{animation:none}.product-tab,.product-tab::after{transition:none}}

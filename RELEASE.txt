@@ -1,0 +1,11 @@
+BG Nexus 完整前端代码与部署包
+打包日期：2026-10-05
+仓库：https://github.com/flora6688/BG-Nexus
+已核对仓库 HEAD：a86b22d3c8a66924d5c585bedeb6fe482654fb2f
+
+内容：当前网站全部前端文件、图片、字体、API 文档编译资源、文档适配源码、重建脚本、GitHub Pages / Nginx / Docker 配置。
+未包含：此前未提供的 API 文档原始 React/TypeScript 工程、真实认证及金融业务后端。
+
+使用 README-部署说明.md 查看部署方法。SHA256SUMS 为包内文件校验清单。
+
+相对公开仓库的整理：补齐 .dockerignore，更新部署说明和验证记录，重新生成校验清单；保留根目录正确的工作流，省略 tools/.github 下误放的重复副本。网站及应用代码未改变。
